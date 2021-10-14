@@ -2,3 +2,14 @@
     width: 25%;
     margin: auto;
 }
+
+
+.table-item:hover {
+    background-color: cadetblue;
+    transform: translate(0px, -3px);
+    cursor: pointer;
+}
+
+.heroes tr.selected{
+    background-color:deepskyblue;
+}
