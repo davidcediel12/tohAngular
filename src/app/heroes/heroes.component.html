@@ -15,22 +15,6 @@
     </tbody>
 </table>
 
-<div *ngIf="selectedHero">
-    <h2>{{ selectedHero.name | uppercase }} Details</h2>
-
-    <div class="card centered">
-        <ul class="list-group">
-            <li class="list-group-item">Id: {{ selectedHero.id }}</li>
-            <li class="list-group-item">Name: {{ selectedHero.name }}</li>
-        </ul>
-    </div>
-
-    <div class="form-group centered">
-        <label for="name">Edit Hero name</label>
-        <input id="name" type="text" class="form-control" [(ngModel)]="selectedHero.name" 
-         placeholder="Name" />
-    </div>
-</div>
-
+<app-hero-detail [hero] = "selectedHero"></app-hero-detail>
 
 <mat-slider min="1" max="100" step="1" value="50"></mat-slider>
