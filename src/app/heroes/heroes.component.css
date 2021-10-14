@@ -1,5 +1,6 @@
 .centered{
-    width: 25%;
+    width:fit-content;
+    min-width: 25%;
     margin: auto;
 }
 
