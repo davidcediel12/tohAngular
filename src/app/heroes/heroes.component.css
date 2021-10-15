@@ -10,7 +10,3 @@
     transform: translate(0px, -3px);
     cursor: pointer;
 }
-
-.heroes tr.selected{
-    background-color:deepskyblue;
-}

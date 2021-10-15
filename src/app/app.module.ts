@@ -6,9 +6,16 @@ import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
+
+/* 
+ * Angular Material Components
+*/
+import { MatIconModule } from '@angular/material/icon';
+import { MatSliderModule } from '@angular/material/slider';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 
 
@@ -17,14 +24,16 @@ import { MessagesComponent } from './messages/messages.component';
     AppComponent,
     HeroesComponent,
     HeroDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
     FormsModule, 
     BrowserAnimationsModule, 
-    MatSliderModule
+    MatSliderModule, 
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
