@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
-
+import { HttpClientModule } from '@angular/common/http';
 /* 
  * Angular Material Components
 */
@@ -33,7 +33,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FormsModule, 
     BrowserAnimationsModule, 
     MatSliderModule, 
-    MatIconModule
+    MatIconModule, 
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
