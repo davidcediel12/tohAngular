@@ -4,6 +4,7 @@ import { HEROES } from './mock-heroes';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,48 @@ export class HeroService {
 
   getHeroes(): Observable<Hero[]> {
     this.messageService.addMessage("Hero Service: Retrieving heroes data");
-    return this.http.get<Hero[]>(this.heroesUrl + "/getAll");
+    // .pipe to process the observable and catch possible errors 
+    return this.http.get<Hero[]>(this.heroesUrl + "/getAll")
+      .pipe(
+        /*
+         * We use tap to make side things while we're processing the observable
+         * In this case, we log something, but we can do more things.
+        */
+        tap(() => this.log('Fetched Heroes')),
+        catchError(this.handleError<Hero[]>('getHeroes', []))
+      );
   }
 
 
   getHero(id : number): Observable<Hero> {
-    this.messageService.addMessage(`Hero Service: Get hero ${id}`);
-    return this.http.get<Hero>(this.heroesUrl + `/get?id=${id}`);
+    return this.http.get<Hero>(this.heroesUrl + `/get?id=${id}`)
+            .pipe(
+              tap(_ => this.log(`Hero Service: Get hero ${id}`)), 
+              catchError(this.handleError<Hero>(`getHero id = ${id}`))
+            );
   }
+
+
+  /*
+  * Dynamic typing in a function:
+  * We can pass multiples Type, for that reason we use T
+  */
+  private handleError<T>(operation : string = 'operation', result? : T){
+    // Return a function that recieve the error
+    return (error : any): Observable<T> => {
+      console.error(error);
+      // Make the error more readable
+      this.log(`operation ${operation} failed: ${error.message}`);
+      /*Return an observable of Type T*/
+      return of(result as T);
+      
+    }
+  }
+
+
+   /** Log a HeroService message with the MessageService */
+   private log(message: string) {
+    this.messageService.addMessage(`HeroService: ${message}`);
+  }
+
 }
