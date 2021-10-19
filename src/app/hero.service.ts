@@ -11,7 +11,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class HeroService {
 
-  private heroesUrl = "http://localhost:8080/heroes"
+  private heroesUrl = "http://localhost:8080/heroes";
+  httpOptions = {
+    headers : new HttpHeaders({'Content-Type' : 'application/json'})
+  };
+
+
   constructor(
     private http : HttpClient,
     private messageService : MessageService
@@ -40,6 +45,34 @@ export class HeroService {
               catchError(this.handleError<Hero>(`getHero id = ${id}`))
             );
   }
+
+
+
+  updateHeroName(hero : Hero): Observable<any> {
+    return this.http.patch(this.heroesUrl + `/modifyName/${hero.id}`, hero, this.httpOptions)
+        .pipe(
+          tap( _ => this.log(`Hero Service Modifying hero with id = ${hero.id}`)), 
+          catchError(this.handleError<any>('updateHero'))
+        );
+  }
+
+
+  addHero(hero : Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroesUrl + "/newHero", hero, this.httpOptions)
+        .pipe(
+          tap((newHero: Hero) => this.log(`Added new hero ${hero.name}`)), 
+          catchError(this.handleError<Hero>('AddHero'))
+        );
+  }
+
+
+  deleteHero(id : number): Observable<Hero> {
+    return this.http.delete<Hero>(this.heroesUrl + `/deleteHero/${id}`, this.httpOptions).pipe(
+      tap(_ => this.log(`Deleting hero id=${id}`)),
+      catchError(this.handleError<Hero>("DeleteHero"))
+    );
+  }
+
 
 
   /*

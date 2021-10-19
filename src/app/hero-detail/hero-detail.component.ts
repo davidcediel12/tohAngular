@@ -32,6 +32,16 @@ export class HeroDetailComponent implements OnInit {
   }
 
 
+  changeHeroName(): void {
+    if(this.hero)
+      this.heroService.updateHeroName(this.hero).subscribe(_ => this.goBack());
+  }
+
+  deleteHero(): void {
+    if(this.hero && this.hero.id)
+      this.heroService.deleteHero(this.hero.id).subscribe(_ => this.goBack());
+  }
+
   goBack(): void { 
     this.location.back();
   }

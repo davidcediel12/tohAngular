@@ -1,13 +1,10 @@
-
-
-
-<button class = "btn btn-light" (click) = "goBack()">
+<button class="btn btn-light" (click)="goBack()">
     <mat-icon>keyboard_backspace</mat-icon>
     Go Back
 </button>
 
 <div *ngIf="hero">
-    <h2 class = "centered">{{ hero.name | uppercase }} Details</h2>
+    <h2 class="centered">{{ hero.name | uppercase }} Details</h2>
 
     <div class="card centered">
         <ul class="list-group">
@@ -18,7 +15,20 @@
 
     <div class="form-group centered">
         <label for="name">Edit Hero name</label>
-        <input id="name" type="text" class="form-control" [(ngModel)]="hero.name" 
-         placeholder="Name" />
+        <input id="name" type="text" class="form-control" [(ngModel)]="hero.name" placeholder="Name" />
+
+        <div class="row justify-content-md-center" style="margin-top: 2em;">
+            <div class="col offset-2">
+                <button type="submit" class="btn btn-primary" (click)="changeHeroName()">
+                    Change
+                </button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-danger" (click)="deleteHero()">
+                    Delete
+                </button>
+            </div>
+        </div>
+
+
     </div>
-</div>

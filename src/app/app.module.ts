@@ -9,12 +9,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddHeroComponent } from './add-hero/add-hero.component';
 /* 
  * Angular Material Components
 */
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
+
+/*
+ * PimeNG Components
+*/
+
+import { Button, ButtonModule } from 'primeng/button';
 
 
 
@@ -25,7 +34,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddHeroComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +44,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserAnimationsModule, 
     MatSliderModule, 
     MatIconModule, 
+    MatButtonModule, 
+    ButtonModule,
     HttpClientModule
   ],
   providers: [],
