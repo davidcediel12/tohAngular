@@ -1,17 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { TreeError } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
 
-  private heroesUrl = "http://localhost:8080/heroes";
+  private heroesUrl = "http://localhost:8080/heroes"; // URL to Springboot API
   httpOptions = {
     headers : new HttpHeaders({'Content-Type' : 'application/json'})
   };
@@ -74,7 +75,20 @@ export class HeroService {
   }
 
 
-
+  searchHeroesByName(partOfName : string): Observable<Hero[]> {
+    // If we don't have any word to find, we don't do the request to optimize
+    if(!partOfName.trim())
+      return of([])
+    
+    return this.http.get<Hero[]>(`${this.heroesUrl}/findByName/?name=${partOfName}`)
+      .pipe(
+        tap(find => find.length ? 
+               this.log(`Finding ${find.length} matches with length name ${partOfName}`) : 
+               this.log(`Not found any matches with  name ${partOfName}`)),
+        catchError(this.handleError<Hero[]>("Find By Name", []))
+      );
+    
+  }
   /*
   * Dynamic typing in a function:
   * We can pass multiples Type, for that reason we use T

@@ -24,6 +24,7 @@ import { MatSliderModule } from '@angular/material/slider';
 */
 
 import { Button, ButtonModule } from 'primeng/button';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
 
 
 
@@ -35,7 +36,8 @@ import { Button, ButtonModule } from 'primeng/button';
     HeroDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    AddHeroComponent
+    AddHeroComponent,
+    HeroSearchComponent
   ],
   imports: [
     BrowserModule,
