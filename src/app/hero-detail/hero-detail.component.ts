@@ -3,6 +3,8 @@ import { Hero } from '../hero';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { HeroService } from '../hero.service';
+import { PowerService } from '../power.service';
+import { Power } from '../power';
 
 
 @Component({
@@ -14,17 +16,27 @@ export class HeroDetailComponent implements OnInit {
 
 
   hero: Hero | undefined;
-  
+  powers : Power[] | undefined;
+
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
+    private powerService : PowerService,
     private location: Location
   ) { }
 
   ngOnInit(): void {
     this.getHero();
+    this.getPowers();
   }
 
+
+  getPowers(): void {
+    console.log("retrieving powers");
+    this.powerService.getAllPowers().subscribe(powers => {
+      this.powers = powers;
+      console.log(powers)});
+  }
 
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get("id"));

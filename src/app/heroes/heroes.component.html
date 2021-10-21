@@ -4,13 +4,17 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
+            <th scope="col">Power</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let hero of heroes" class="table-item">
+        <tr *ngFor="let hero of heroes" class="table-item" routerLink = "/detail/{{hero.id}}">
             <td>{{ hero.id }}</td>
-            <td routerLink = "/detail/{{hero.id}}">
+            <td>
                 {{ hero.name }}
+            </td>
+            <td>
+                {{ hero.powerName }}
             </td>
         </tr>
     </tbody>

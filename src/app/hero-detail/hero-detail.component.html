@@ -10,12 +10,15 @@
         <ul class="list-group">
             <li class="list-group-item">Id: {{ hero.id }}</li>
             <li class="list-group-item">Name: {{ hero.name }}</li>
+            <li class="list-group-item">Power: {{ hero.powerName }}</li>
         </ul>
     </div>
 
     <div class="form-group centered">
-        <label for="name">Edit Hero name</label>
-        <input id="name" type="text" class="form-control" [(ngModel)]="hero.name" placeholder="Name" />
+        <div class="form-group">
+            <label for="name">Edit Hero name</label>
+            <input id="name" type="text" class="form-control" [(ngModel)]="hero.name" placeholder="Name" />
+        </div>
 
         <div class="row justify-content-md-center" style="margin-top: 2em;">
             <div class="col offset-2">
