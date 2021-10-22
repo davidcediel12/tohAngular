@@ -5,17 +5,15 @@
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Power</th>
+            <th scope="col">Alter Ego</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let hero of heroes" class="table-item" routerLink = "/detail/{{hero.id}}">
             <td>{{ hero.id }}</td>
-            <td>
-                {{ hero.name }}
-            </td>
-            <td>
-                {{ hero.powerName }}
-            </td>
+            <td>{{ hero.name }}</td>
+            <td>{{ hero.powerName }}</td>
+            <td>{{ hero.alterEgo }}</td>
         </tr>
     </tbody>
 </table>

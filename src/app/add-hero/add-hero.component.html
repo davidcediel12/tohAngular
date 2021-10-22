@@ -13,6 +13,12 @@
                     <input type="text" class="form-control from-control-lg" 
                     id="heroName" placeholder="Enter the name" #heroName/>
                 </div>
+                
+                <div class="form-group">
+                    <label for="alterEgo"><h2>Alter Ego:</h2></label>
+                    <input type="text" class="form-control from-control-lg" 
+                    id="alterEgo" placeholder="Enter the alter ego name" #alterEgo/>
+                </div>
 
                 <div class="form-group">
                     <label for = "powers">Powers</label>
@@ -23,7 +29,7 @@
 
                 <div class="form-group" style="margin-top: 2em;">
                     <button class="mat-button" mat-flat-button color="primary"
-                     (click) = "addHero(heroName.value, power.value)">
+                     (click) = "addHero(heroName.value, power.value, alterEgo.value)">
                         Create
                     </button>
                 </div>

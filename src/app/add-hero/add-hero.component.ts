@@ -28,11 +28,11 @@ export class AddHeroComponent implements OnInit {
     this.powerService.getAllPowers().subscribe(powers => this.powers = powers);
   }
 
-  addHero(heroName : string, powerName : string): void{
+  addHero(heroName : string, powerName : string, alterEgo :string): void{
     heroName = heroName.trim();
     if(!heroName){ return }
 
-    let hero: Hero =  new Hero(heroName, powerName);
+    let hero: Hero =  new Hero(heroName, powerName, alterEgo);
 
 
     this.heroService.addHero(hero)
