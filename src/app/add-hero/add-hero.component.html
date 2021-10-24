@@ -1,43 +1,59 @@
-<button class = "btn btn-light" (click) = "goBack()">
+<button class="btn btn-light" (click)="goBack()">
     <mat-icon>keyboard_backspace</mat-icon>
     Go Back
 </button>
 
 
-<div class = "container">
+<div class="container">
     <div class="row align-items-center">
         <div class="col-6">
-            <form>
-                <div class="form-group">
-                    <label for="heroName"><h2>Hero name:</h2></label>
-                    <input type="text" class="form-control from-control-lg" 
-                    id="heroName" placeholder="Enter the name" #heroName/>
-                </div>
-                
-                <div class="form-group">
-                    <label for="alterEgo"><h2>Alter Ego:</h2></label>
-                    <input type="text" class="form-control from-control-lg" 
-                    id="alterEgo" placeholder="Enter the alter ego name" #alterEgo/>
-                </div>
+            <div [hidden]="submitted">
+                <form #addHeroForm="ngForm" (ngSubmit)="onSubmit(); addHeroForm.reset()">
+                    <div class="form-group">
+                        <label for="heroName">
+                            <h2>Hero name: </h2>
+                        </label>
+                        <input type="text" class="form-control from-control-lg" id="heroName"
+                            placeholder="Enter the name" #inputName="ngModel" [(ngModel)]="heroName" name="heroName"
+                            required pattern="([a-zA-Z]+\s?)+" />
+                    </div>
 
-                <div class="form-group">
-                    <label for = "powers">Powers</label>
-                    <select class="form-select" id = "powers" #power>
-                        <option *ngFor="let power of powers" [selected]>{{ power.name }}</option>
-                    </select>
-                </div>
+                    <div *ngIf="inputName.invalid  && inputName.dirty" class="alert alert-danger">
+                        Please enter a valid Hero name
+                    </div>
 
-                <div class="form-group" style="margin-top: 2em;">
-                    <button class="mat-button" mat-flat-button color="primary"
-                     (click) = "addHero(heroName.value, power.value, alterEgo.value)">
-                        Create
-                    </button>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <label for="alterEgo">
+                            <h2>Alter Ego:</h2>
+                        </label>
+                        <input type="text" class="form-control from-control-lg" id="alterEgo"
+                            placeholder="Enter the alter ego name" [(ngModel)]="alterEgo" name="alterEgo" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="powers">Powers</label>
+                        <select class="form-select" id="powers" required [(ngModel)]="heroPower" name="power">
+                            <option *ngFor="let power of powers" [selected]>{{ power.name }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 2em;">
+                        <button class="mat-button" type="submit" mat-flat-button color="primary"
+                             [disabled]="addHeroForm.invalid">
+                            Create
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div *ngIf = "submitted" class = "alert alert-success">
+                Hero submitted
+                <button class = "btn btn-success"(click)="goBack()">Go back</button>
+            </div>
         </div>
 
-        <div class = "col align-self-center">
-            <img src="assets/images/heroSentence.jpg" width = "100%">
+        <div class="col align-self-center">
+            <img src="assets/images/heroSentence.jpg" width="100%">
         </div>
     </div>
 </div>

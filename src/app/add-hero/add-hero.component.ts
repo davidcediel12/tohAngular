@@ -13,6 +13,10 @@ import { Power } from '../power';
 export class AddHeroComponent implements OnInit {
 
   powers : Power[] | undefined;
+  heroName : string | undefined;
+  heroPower: string | undefined;
+  alterEgo: string | undefined;
+  submitted : boolean = false;
 
   constructor(
     private heroService : HeroService,
@@ -28,16 +32,17 @@ export class AddHeroComponent implements OnInit {
     this.powerService.getAllPowers().subscribe(powers => this.powers = powers);
   }
 
-  addHero(heroName : string, powerName : string, alterEgo :string): void{
-    heroName = heroName.trim();
-    if(!heroName){ return }
-
-    let hero: Hero =  new Hero(heroName, powerName, alterEgo);
-
-
-    this.heroService.addHero(hero)
-      .subscribe(_ => this.goBack());
+  onSubmit(): void{
+    this.addHero();
+    this.submitted = true;
   }
+
+
+  addHero(): void{
+    let hero: Hero =  new Hero(this.heroName!, this.heroPower!, this.alterEgo);
+    this.heroService.addHero(hero)
+      .subscribe();
+   }
 
   goBack(){
     this.location.back();

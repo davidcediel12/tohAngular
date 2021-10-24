@@ -1,16 +1,19 @@
+// Angular imports
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+// Basic imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+// Custom app imports
 import { HeroesComponent } from './heroes/heroes.component';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
-import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddHeroComponent } from './add-hero/add-hero.component';
+
 /* 
  * Angular Material Components
 */

@@ -1,0 +1,8 @@
+form .ng-valid.ng-dirty{
+    border: 0.1em solid green;
+}
+
+
+form .ng-invalid.ng-dirty{
+    border: 0.1em solid red;
+}
