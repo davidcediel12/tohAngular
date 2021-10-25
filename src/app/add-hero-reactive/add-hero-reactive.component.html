@@ -1,0 +1,63 @@
+<button class="btn btn-light" (click)="goBack()">
+    <mat-icon>keyboard_backspace</mat-icon>
+    Go Back
+</button>
+
+
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-6">
+            <div>
+                <p>Form status: {{ heroForm.status }}</p>
+                <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
+
+                    <div formGroupName="persons" class = "formGroup">
+                        <div class="form-group">
+                            <label for="heroName">
+                                <h2>Hero name: </h2>
+                            </label>
+                            <input type="text" class="form-control from-control-lg" id="heroName"
+                                placeholder="Enter the name" formControlName="name" required
+                                pattern="([a-zA-Z]+\s?)+" />
+                        </div>
+
+                        <div hidden class="alert alert-danger">
+                            Please enter a valid Hero name
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alterEgo">
+                                <h2>Alter Ego:</h2>
+                            </label>
+                            <input type="text" class="form-control from-control-lg" id="alterEgo"
+                                placeholder="Enter the alter ego name" formControlName="alterEgo" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="powers">Powers</label>
+                        <select class="form-select" id="powers" required formControlName="power">
+                            <option *ngFor="let power of powers" [selected]>{{ power.name }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 2em;">
+                        <button class="mat-button" type="submit" mat-flat-button color="primary"
+                            [disabled]="heroForm.invalid">
+                            Create
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div Hidden class="alert alert-success">
+                Hero submitted
+                <button class="btn btn-success" (click)="goBack()">Go back</button>
+            </div>
+            
+        </div>
+
+        <div class="col align-self-center">
+            <img src="assets/images/heroSentence.jpg" width="100%">
+        </div>
+    </div>
+</div>

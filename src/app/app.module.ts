@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Basic imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +28,7 @@ import { MatSliderModule } from '@angular/material/slider';
 
 import { Button, ButtonModule } from 'primeng/button';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { AddHeroReactiveComponent } from './add-hero-reactive/add-hero-reactive.component';
 
 
 
@@ -40,12 +41,14 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
     MessagesComponent,
     DashboardComponent,
     AddHeroComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    AddHeroReactiveComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
     FormsModule, 
+    ReactiveFormsModule,
     BrowserAnimationsModule, 
     MatSliderModule, 
     MatIconModule, 
