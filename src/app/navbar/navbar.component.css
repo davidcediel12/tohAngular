@@ -1,0 +1,16 @@
+.a{
+    background-color: aqua;
+    width: fit-content;
+}
+.b{
+    background-color: blue;
+    width: 100%;
+}
+.d {
+    background-color: darkmagenta;
+}
+
+.padd { 
+    background-color: darkmagenta;
+    margin-right: 0;
+}

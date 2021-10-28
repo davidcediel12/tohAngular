@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { AddHeroComponent } from './add-hero/add-hero.component';
 import { AddHeroReactiveComponent } from './add-hero-reactive/add-hero-reactive.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -12,8 +13,9 @@ const routes: Routes = [
   { path : 'heroes', component : HeroesComponent },
   { path : 'dashboard', component : DashboardComponent},
   { path : 'detail/:id', component : HeroDetailComponent},
-  // { path : 'newHero', component : AddHeroComponent}
-  { path: 'newHero', component : AddHeroReactiveComponent}
+  // { path : 'newHero', component : AddHeroComponent},
+  { path: 'newHero', component : AddHeroReactiveComponent},
+  { path: 'login', component : LoginComponent}
 ];
 
 @NgModule({

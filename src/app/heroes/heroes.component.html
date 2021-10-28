@@ -1,27 +1,30 @@
 <h2>All Heroes</h2>
-<table class="table table-bordered centered heroes">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Power</th>
-            <th scope="col">Alter Ego</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let hero of heroes" class="table-item" routerLink = "/detail/{{hero.id}}">
-            <td>{{ hero.id }}</td>
-            <td>{{ hero.name }}</td>
-            <td>{{ hero.powerName }}</td>
-            <td>{{ hero.alterEgo }}</td>
-        </tr>
-    </tbody>
-</table>
+
+<div class="container">
+    <table class="table table-bordered centered heroes">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Power</th>
+                <th scope="col">Alter Ego</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let hero of heroes" class="table-item" routerLink="/detail/{{hero.id}}">
+                <td>{{ hero.id }}</td>
+                <td>{{ hero.name }}</td>
+                <td>{{ hero.powerName }}</td>
+                <td>{{ hero.alterEgo }}</td>
+            </tr>
+        </tbody>
+    </table>
 
 
-<button type = "button" class="btn btn-light btn-centered" routerLink = "/newHero">
-    <i class="pi pi-plus" ></i>
-    <span>Add hero</span>
-</button>
+    <button type="button" class="btn btn-light btn-centered" routerLink="/newHero">
+        <i class="pi pi-plus"></i>
+        <span>Add hero</span>
+    </button>
 
-<mat-slider min="1" max="100" step="1" value="50"></mat-slider>
+    <mat-slider min="1" max="100" step="1" value="50"></mat-slider>
+</div>
