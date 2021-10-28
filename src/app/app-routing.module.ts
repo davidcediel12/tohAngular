@@ -6,15 +6,16 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { AddHeroComponent } from './add-hero/add-hero.component';
 import { AddHeroReactiveComponent } from './add-hero-reactive/add-hero-reactive.component';
 import { LoginComponent } from './login/login.component';
+import { RouteGuardService } from './services/route-guard.service';
 
 
 const routes: Routes = [
-  { path : '', redirectTo : '/dashboard', pathMatch : 'full'},
-  { path : 'heroes', component : HeroesComponent },
-  { path : 'dashboard', component : DashboardComponent},
-  { path : 'detail/:id', component : HeroDetailComponent},
+  { path : '', redirectTo : '/login', pathMatch : 'full'},
+  { path : 'heroes', component : HeroesComponent, canActivate : [RouteGuardService] },
+  { path : 'dashboard', component : DashboardComponent, canActivate: [RouteGuardService]},
+  { path : 'detail/:id', component : HeroDetailComponent, canActivate: [RouteGuardService]},
   // { path : 'newHero', component : AddHeroComponent},
-  { path: 'newHero', component : AddHeroReactiveComponent},
+  { path: 'newHero', component : AddHeroReactiveComponent, canActivate: [RouteGuardService]},
   { path: 'login', component : LoginComponent}
 ];
 

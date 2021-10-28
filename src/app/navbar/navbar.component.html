@@ -9,22 +9,22 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="navbar-nav" *ngIf="!isUserAuth">
+        <div class="collapse navbar-collapse" *ngIf="authService.isUserLoggedIn()" id="navbarNav">
+            <div class="navbar-nav">
                 <a class="nav-item nav-link" routerLink="/dashboard">Dashboard</a>
                 <a class="nav-item nav-link" routerLink="/heroes">Heroes</a>
             </div>
         </div>
 
 
-        <div class = "navbar-collapse offset-9" *ngIf="isUserAuth">
+        <div class = "navbar-collapse justify-content-end" *ngIf="authService.isUserLoggedIn()">
             <div class = "navbar-nav">
                 <button class = "nav-item nav-link text-light"
                 mat-flat-button color="warn" (click)="logOut()">Logout</button>
             </div> 
         </div>
 
-        <div class = "navbar-collapse offset-9" *ngIf="!isUserAuth">
+        <div class = "navbar-collapse justify-content-end" *ngIf="!authService.isUserLoggedIn()">
             <div class = "navbar-nav">
                 <button class = "nav-item nav-link text-light"
                 mat-flat-button color="primary" routerLink="/login">Login</button>

@@ -29,6 +29,19 @@ export class HeroesComponent implements OnInit {
 
 
   getHeroes(): void{
-    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
+    this.heroService.getHeroes().subscribe(
+      heroes => this.heroes = heroes, 
+      error => this.handleErrorResponse(error)
+      );
+  }
+
+
+  /**
+   * ! This function is never triggered because we're handling the errorsw in the service
+   * ! Only to show how would it be.
+   * @param error Error of the object
+   */
+  handleErrorResponse(error : Object){
+    this.heroes = [{name : "something went wrong", powerName : ":("}];
   }
 }

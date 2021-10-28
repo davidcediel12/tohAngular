@@ -3,7 +3,7 @@ import { Hero } from './hero';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, retry, tap } from 'rxjs/operators';
 import { TreeError } from '@angular/compiler';
 
 @Injectable({
@@ -28,6 +28,7 @@ export class HeroService {
     // .pipe to process the observable and catch possible errors 
     return this.http.get<Hero[]>(this.heroesUrl + "/getAll")
       .pipe(
+        retry(3), // Try several time to make the HTTP req before throws an error
         /*
          * We use tap to make side things while we're processing the observable
          * In this case, we log something, but we can do more things.
@@ -80,7 +81,7 @@ export class HeroService {
       return of([])
     
     return this.http.get<Hero[]>(`${this.heroesUrl}/findByName/?name=${partOfName}`)
-      .pipe(
+      .pipe( 
         tap(find => find.length ? 
                this.log(`Finding ${find.length} matches with length name ${partOfName}`) : 
                this.log(`Not found any matches with  name ${partOfName}`)),
