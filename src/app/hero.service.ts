@@ -12,15 +12,6 @@ import { TreeError } from '@angular/compiler';
 export class HeroService {
 
   private heroesUrl = "http://localhost:8080/heroes"; // URL to Springboot API
-  private username : string = "davidcediel12"
-  private password : string = "hola123"
-  httpOptions = {
-    headers : new HttpHeaders({
-      // Content-Type : 'application/json',
-      Authorization : 'Basic ' + window.btoa(this.username + ":" + this.password)
-    })
-  }
-
 
   constructor(
     private http : HttpClient,
@@ -31,7 +22,7 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     this.messageService.addMessage("Hero Service: Retrieving heroes data");
     // .pipe to process the observable and catch possible errors 
-    return this.http.get<Hero[]>(this.heroesUrl + "/getAll", this.httpOptions)
+    return this.http.get<Hero[]>(this.heroesUrl + "/getAll")
       .pipe(
         retry(3), // Try several time to make the HTTP req before throws an error
         /*
@@ -55,7 +46,7 @@ export class HeroService {
 
 
   updateHeroName(hero : Hero): Observable<any> {
-    return this.http.patch(this.heroesUrl + `/modifyName/${hero.id}`, hero, this.httpOptions)
+    return this.http.patch(this.heroesUrl + `/modifyName/${hero.id}`, hero)
         .pipe(
           tap( _ => this.log(`Hero Service Modifying hero with id = ${hero.id}`)), 
           catchError(this.handleError<any>('updateHero'))
@@ -64,7 +55,7 @@ export class HeroService {
 
 
   addHero(hero : Hero): Observable<Hero> {
-    return this.http.post<Hero>(this.heroesUrl + "/newHero", hero, this.httpOptions)
+    return this.http.post<Hero>(this.heroesUrl + "/newHero", hero)
         .pipe(
           tap((newHero: Hero) => this.log(`Added new hero ${hero.name}`)), 
           catchError(this.handleError<Hero>('AddHero'))
@@ -73,7 +64,7 @@ export class HeroService {
 
 
   deleteHero(id : number): Observable<Hero> {
-    return this.http.delete<Hero>(this.heroesUrl + `/deleteHero/${id}`, this.httpOptions).pipe(
+    return this.http.delete<Hero>(this.heroesUrl + `/deleteHero/${id}`).pipe(
       tap(_ => this.log(`Deleting hero id=${id}`)),
       catchError(this.handleError<Hero>("DeleteHero"))
     );

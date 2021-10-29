@@ -1,7 +1,7 @@
 // Angular imports
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Basic imports
@@ -31,6 +31,7 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { AddHeroReactiveComponent } from './add-hero-reactive/add-hero-reactive.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { InterceptBasicAuthService } from './services/http/intercept-basic-auth.service';
 
 
 
@@ -60,7 +61,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     ButtonModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide : HTTP_INTERCEPTORS, useClass: InterceptBasicAuthService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

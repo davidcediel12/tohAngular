@@ -13,18 +13,14 @@ import { catchError, tap } from 'rxjs/operators';
 export class PowerService {
 
   powerUrl : string = "http://localhost:8080/power";
-  httpOptions = {
-    headers : new HttpHeaders({'Content-Type' : 'application/json'})
-  };
 
-  
   constructor(
     private messageService : MessageService, 
     private http : HttpClient
   ) { }
 
   getAllPowers() : Observable<Power[]> {
-    return this.http.get<Power[]>(`${this.powerUrl}/getAll`, this.httpOptions)
+    return this.http.get<Power[]>(`${this.powerUrl}/getAll`)
       .pipe(
         tap(_ => this.log(`Fetching powers`)),
         catchError(this.handleError<Power[]>("Fetching all"))
