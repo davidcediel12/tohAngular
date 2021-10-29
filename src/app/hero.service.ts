@@ -12,9 +12,14 @@ import { TreeError } from '@angular/compiler';
 export class HeroService {
 
   private heroesUrl = "http://localhost:8080/heroes"; // URL to Springboot API
+  private username : string = "davidcediel12"
+  private password : string = "hola123"
   httpOptions = {
-    headers : new HttpHeaders({'Content-Type' : 'application/json'})
-  };
+    headers : new HttpHeaders({
+      // Content-Type : 'application/json',
+      Authorization : 'Basic ' + window.btoa(this.username + ":" + this.password)
+    })
+  }
 
 
   constructor(
@@ -26,7 +31,7 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     this.messageService.addMessage("Hero Service: Retrieving heroes data");
     // .pipe to process the observable and catch possible errors 
-    return this.http.get<Hero[]>(this.heroesUrl + "/getAll")
+    return this.http.get<Hero[]>(this.heroesUrl + "/getAll", this.httpOptions)
       .pipe(
         /*
          * We use tap to make side things while we're processing the observable

@@ -10,7 +10,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="navbar-nav" *ngIf="!isUserAuth">
+            <div class="navbar-nav" *ngIf="isUserAuth">
                 <a class="nav-item nav-link" routerLink="/dashboard">Dashboard</a>
                 <a class="nav-item nav-link" routerLink="/heroes">Heroes</a>
             </div>
