@@ -32,6 +32,7 @@ import { AddHeroReactiveComponent } from './add-hero-reactive/add-hero-reactive.
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { InterceptBasicAuthService } from './services/http/intercept-basic-auth.service';
+import { SignupComponent } from './signup/signup.component';
 
 
 
@@ -47,7 +48,8 @@ import { InterceptBasicAuthService } from './services/http/intercept-basic-auth.
     HeroSearchComponent,
     AddHeroReactiveComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
