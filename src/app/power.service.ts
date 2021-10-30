@@ -4,6 +4,7 @@ import { Power } from './power';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { catchError, tap } from 'rxjs/operators';
+import { API_URL } from './app.constants';
 
 
 
@@ -12,7 +13,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class PowerService {
 
-  powerUrl : string = "http://localhost:8080/power";
+  powerUrl : string = `${API_URL}/power`;
 
   constructor(
     private messageService : MessageService, 

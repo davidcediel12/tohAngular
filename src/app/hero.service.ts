@@ -5,13 +5,14 @@ import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, retry, tap } from 'rxjs/operators';
 import { TreeError } from '@angular/compiler';
+import { API_URL } from './app.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
 
-  private heroesUrl = "http://localhost:8080/heroes"; // URL to Springboot API
+  private heroesUrl = `${API_URL}/heroes`; // URL to Springboot API
 
   constructor(
     private http : HttpClient,

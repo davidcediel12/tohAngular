@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BasicAuthService } from '../services/basic-auth.service';
 import { Hardcodedauthenticationservice } from '../services/hardcodedauthenticationservice.service';
 
 @Component({
@@ -15,8 +16,11 @@ export class LoginComponent implements OnInit {
       password : ['']
   });
 
+  validLogin : boolean = true;
+  
   constructor(
-    private authService : Hardcodedauthenticationservice,
+    //private authService : Hardcodedauthenticationservice,
+    private authService : BasicAuthService,
     private formBuilder : FormBuilder,
     private router : Router
   ) { }
@@ -25,14 +29,37 @@ export class LoginComponent implements OnInit {
     
   }
 
-  onSubmit(): void {
+  login(): void {
     let username =  this.loginForm.get("username")?.value
     let password = this.loginForm.get("password")?.value
 
-    if(this.authService.authenticate(username, password)){
+    let jwt : string;
+    this.authService.authenticate(username, password).subscribe(
+      response => localStorage.setItem("token", response.jwt),
+      error => {
+        console.log(error);
+        this.validLogin = false;
+      }
+    )
+    console.log(this.validLogin);
+    if(this.validLogin)
       this.router.navigate(['/heroes'])
-    }else{
-      alert("Something went wrong")
-    }
   }
+}
+
+
+/**
+ * * Classes to handle the login
+ */
+export class AuthRequest {
+  constructor(
+    private username : string, 
+    private password : string
+    ){ }
+}
+
+export class AuthResponse {
+  constructor(
+      public jwt : string
+    ){ }
 }
