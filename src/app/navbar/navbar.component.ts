@@ -1,9 +1,6 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { Hardcodedauthenticationservice } from '../services/hardcodedauthenticationservice.service';
+import { BasicAuthService } from '../services/basic-auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +11,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private route: Router,
-    public authService: Hardcodedauthenticationservice
+    public authService: BasicAuthService
   ) {}
 
   ngOnInit(): void {}

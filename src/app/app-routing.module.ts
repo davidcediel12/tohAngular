@@ -7,6 +7,7 @@ import { AddHeroComponent } from './add-hero/add-hero.component';
 import { AddHeroReactiveComponent } from './add-hero-reactive/add-hero-reactive.component';
 import { LoginComponent } from './login/login.component';
 import { RouteGuardService } from './services/route-guard.service';
+import { SignupComponent } from './signup/signup.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path : 'detail/:id', component : HeroDetailComponent, canActivate: [RouteGuardService]},
   // { path : 'newHero', component : AddHeroComponent},
   { path: 'newHero', component : AddHeroReactiveComponent, canActivate: [RouteGuardService]},
-  { path: 'login', component : LoginComponent}
+  { path: 'login', component : LoginComponent},
+  { path : 'signup', component : SignupComponent}
 ];
 
 @NgModule({

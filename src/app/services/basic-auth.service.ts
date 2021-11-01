@@ -5,6 +5,7 @@ import { map, tap } from 'rxjs/operators';
 import { API_URL } from '../app.constants';
 import { Hero } from '../hero';
 import { AuthRequest, AuthResponse } from '../login/login.component';
+import { User } from '../signup/signup.component';
 
 
 // Names of the local storage variables, only for avoid spelling errors
@@ -33,6 +34,12 @@ export class BasicAuthService {
     );
   }
 
+
+  newUser(newUser : User): Observable<boolean> {
+    return this.http.post<boolean>(`${this.url}/newUser`, newUser);
+  }
+
+
   isUserLoggedIn(): boolean{
     return this.getAuthUser() != null;
   }
@@ -52,4 +59,6 @@ export class BasicAuthService {
     localStorage.removeItem(USER_ID);
     localStorage.removeItem(TOKEN);
   }
+
+  
 }

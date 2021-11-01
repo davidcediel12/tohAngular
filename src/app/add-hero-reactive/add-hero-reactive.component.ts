@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Power } from '../power';
-import { PowerService } from '../power.service';
+import { PowerService } from '../services/power.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { HeroService } from '../hero.service';
+import { HeroService } from '../services/hero.service';
 import { Hero } from '../hero';
 @Component({
   selector: 'app-add-hero-reactive',

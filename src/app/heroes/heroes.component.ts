@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
-import { MessageService } from '../message.service';
-import { Hardcodedauthenticationservice } from '../services/hardcodedauthenticationservice.service';
+import { HeroService } from '../services/hero.service';
+import { MessageService } from '../services/message.service';
 
 
 @Component({
@@ -18,13 +17,11 @@ export class HeroesComponent implements OnInit {
   
   constructor(
     private heroService : HeroService,
-    private messageService : MessageService,
-    public authService : Hardcodedauthenticationservice
+    private messageService : MessageService
   ) { }
 
   ngOnInit(): void {
-    if(this.authService.isUserLoggedIn())
-      this.getHeroes();
+    this.getHeroes();
   }
 
 

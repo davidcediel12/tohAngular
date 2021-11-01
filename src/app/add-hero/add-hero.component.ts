@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HeroService } from '../hero.service';
+import { HeroService } from '../services/hero.service';
 import { Hero } from '../hero';
 import { Location } from '@angular/common';
-import { PowerService } from '../power.service';
+import { PowerService } from '../services/power.service';
 import { Power } from '../power';
 
 @Component({

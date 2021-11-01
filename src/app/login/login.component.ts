@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BasicAuthService } from '../services/basic-auth.service';
-import { Hardcodedauthenticationservice } from '../services/hardcodedauthenticationservice.service';
 
 @Component({
   selector: 'app-login',
@@ -12,14 +11,13 @@ import { Hardcodedauthenticationservice } from '../services/hardcodedauthenticat
 export class LoginComponent implements OnInit {
 
   loginForm = this.formBuilder.group({
-      username : ['', [Validators.pattern('[0-9]*')]],
+      username : ['', [Validators.pattern('[a-zA-Z0-9]*')]],
       password : ['']
   });
 
   validLogin : boolean = true;
   
   constructor(
-    //private authService : Hardcodedauthenticationservice,
     private authService : BasicAuthService,
     private formBuilder : FormBuilder,
     private router : Router
