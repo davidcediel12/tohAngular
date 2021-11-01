@@ -36,6 +36,7 @@ export class BasicAuthService {
 
 
   newUser(newUser : User): Observable<boolean> {
+    console.log(`New user: ${newUser.name} ${newUser.lastName} ${newUser.email} ${newUser.password} ${newUser.username}`)
     return this.http.post<boolean>(`${this.url}/newUser`, newUser);
   }
 

@@ -33,15 +33,15 @@ export class LoginComponent implements OnInit {
 
     let jwt : string;
     this.authService.authenticate(username, password).subscribe(
-      response => localStorage.setItem("token", response.jwt),
+      response => { 
+        localStorage.setItem("token", response.jwt);
+        this.router.navigate(['/heroes']);
+      },
       error => {
         console.log(error);
         this.validLogin = false;
       }
-    )
-    console.log(this.validLogin);
-    if(this.validLogin)
-      this.router.navigate(['/heroes'])
+    );
   }
 }
 

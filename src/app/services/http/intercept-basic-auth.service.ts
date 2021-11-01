@@ -23,9 +23,6 @@ export class InterceptBasicAuthService implements HttpInterceptor {
 
     let token = this.authService.getToken();
     let userId = this.authService.getAuthUser();
-    console.log("Im the interceptor");
-    console.log(token);
-    console.log(userId)
 
     req = req.clone({
       setHeaders : {
@@ -45,7 +42,7 @@ export class InterceptBasicAuthService implements HttpInterceptor {
         },
       });
     }
-    console.log("My header auth is" + req.headers.get("Authorization"));
+    // console.log("My header auth is" + req.headers.get("Authorization"));
     return next.handle(req);
   }
 }

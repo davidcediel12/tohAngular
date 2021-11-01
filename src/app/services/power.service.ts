@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Power } from './power';
+import { Power } from '../power';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { catchError, tap } from 'rxjs/operators';
-import { API_URL } from './app.constants';
+import { API_URL } from '../app.constants';
 
 
 

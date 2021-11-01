@@ -1,0 +1,10 @@
+.myContainer {
+    background-color: rgb(126, 186, 226);
+    border-radius: 2em;
+}
+
+.myButton {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}

@@ -11,7 +11,7 @@ import { SignupComponent } from './signup/signup.component';
 
 
 const routes: Routes = [
-  { path : '', redirectTo : '/login', pathMatch : 'full'},
+  { path : '', redirectTo : '/dashboard', pathMatch : 'full'},
   { path : 'heroes', component : HeroesComponent, canActivate : [RouteGuardService] },
   { path : 'dashboard', component : DashboardComponent, canActivate: [RouteGuardService]},
   { path : 'detail/:id', component : HeroDetailComponent, canActivate: [RouteGuardService]},

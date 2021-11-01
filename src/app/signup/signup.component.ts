@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BasicAuthService } from '../services/basic-auth.service';
 
 @Component({
@@ -25,29 +26,26 @@ export class SignupComponent implements OnInit {
   })
   constructor(
     private fb : FormBuilder,
-    private authService : BasicAuthService
+    private authService : BasicAuthService,
+    private router : Router
   ) { }
 
 
   signUp(){
-    console.log("Submitting")
-
-    console.log(
-      this.signUpForm.get("basicInformation.name")!.value,
-      this.signUpForm.get("basicInformation.lastName")!.value,
-      this.signUpForm.get("basicInformation.email")!.value,
-      this.signUpForm.get("authInformation.username")!.value,
-      this.signUpForm.get("authInformation.password")!.value
-    )
+    
     let newUser : User = new User(
-      this.signUpForm.get("basicInformation.name")!.value,
-      this.signUpForm.get("basicInformation.lastName")!.value,
-      this.signUpForm.get("basicInformation.email")!.value,
-      this.signUpForm.get("authInformation.username")!.value,
-      this.signUpForm.get("authInformation.password")!.value
+      this.signUpForm.get("basicInformation.name")?.value,
+      this.signUpForm.get("basicInformation.lastName")?.value,
+      this.signUpForm.get("basicInformation.email")?.value,
+      this.signUpForm.get("authInformation.username")?.value,
+      this.signUpForm.get("authInformation.password")?.value,
     );
+
     this.authService.newUser(newUser).subscribe(
-      (response : boolean) => response ? this.validSignUp = true : this.validSignUp = false,
+      (response : boolean) => {
+        response ? this.validSignUp = true : this.validSignUp = false;
+        this.router.navigate(['login']);
+      },
       error => this.validSignUp = false
     );
   }
@@ -61,9 +59,9 @@ export class SignupComponent implements OnInit {
 
 export class User {
   constructor(
-    name : string, 
-    lastName : string, 
-    email : string, 
-    username : string, 
-    password : string) {}
+    public name : string, 
+    public lastName : string, 
+    public email : string, 
+    public username : string, 
+    public password : string) {}
 }

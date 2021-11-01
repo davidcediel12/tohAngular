@@ -25,9 +25,13 @@
         </div>
 
         <div class = "navbar-collapse justify-content-end" *ngIf="!authService.isUserLoggedIn()">
-            <div class = "navbar-nav">
+            <div class = "navbar-nav" style="margin-right: 1.5em;">
                 <button class = "nav-item nav-link text-light"
                 mat-flat-button color="primary" routerLink="/login">Login</button>
+            </div>
+            <div class = "navbar-nav"  style="margin-right: 1.5em;">
+                <button class = "nav-item nav-link"
+                mat-stroked-button color="primary" routerLink="/signup">SignUp</button>
             </div>
         </div>
     </nav>
